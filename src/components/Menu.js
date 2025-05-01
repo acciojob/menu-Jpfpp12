@@ -2,18 +2,22 @@ import React from "react";
 
 function Menu({ items }) {
   return (
-    <div className="main">
-      {items.map(item => (
-        <article className="menu-item" key={item.id}>
+    <div className="menu">
+      {items.map((item) => (
+        <div
+          key={item.id}
+          className="menu-item"
+          data-test-id={`menu-item-${item.category}`}
+        >
           <img src={item.img} alt={item.title} className="photo" />
-          <div className="item-info">
+          <div className="info">
             <header>
               <h4>{item.title}</h4>
               <h4 className="price">${item.price}</h4>
             </header>
-            <p className="item-text">{item.desc}</p>
+            <p>{item.desc}</p>
           </div>
-        </article>
+        </div>
       ))}
     </div>
   );

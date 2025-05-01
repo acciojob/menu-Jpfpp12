@@ -24,7 +24,7 @@ const MENU_DATA = [
     category: "shakes",
     price: 6.99,
     img: "./images/item-3.jpeg",
-    desc: ombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.,
+    desc:` ombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.`,
   },
   {
     id: 4,

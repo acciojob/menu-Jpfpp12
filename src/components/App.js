@@ -78,41 +78,33 @@ const MENU_DATA =  [
   },
 ];
 
-const allCategories = ["all", ...new Set(MENU_DATA.map(item => item.category))];
 
 function App() {
-  const [menuItems, setMenuItems] = useState(MENU_DATA);
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [list, setList] = useState(MENU_DATA);
 
-  const handleFilter = (category) => {
-    setActiveCategory(category);
+  const onFilter = (category) => {
     if (category === "all") {
-      setMenuItems(MENU_DATA);
+      setList(MENU_DATA);
     } else {
-      setMenuItems(MENU_DATA.filter(item => item.category === category));
+      const filtered = MENU_DATA.filter(item => item.category === category);
+      setList(filtered);
     }
   };
 
   return (
-    <div className="app">
-      <h1 className="menu-title">Our Menu</h1>
+    <div id="main">
+      <h1>Our Menu</h1>
+
       <div className="btn-container">
-        {allCategories.map((cat, index) => (
-          <button
-            key={index}
-            className={`filter-btn ${cat === activeCategory ? "active" : ""}`}
-            onClick={() => handleFilter(cat)}
-          >
-            {cat}
-          </button>
-        ))}
+        <button id="filter-btn-0" onClick={() => onFilter("all")}>All</button>
+        <button id="filter-btn-1" onClick={() => onFilter("breakfast")}>Breakfast</button>
+        <button id="filter-btn-2" onClick={() => onFilter("lunch")}>Lunch</button>
+        <button id="filter-btn-3" onClick={() => onFilter("shakes")}>Shakes</button>
       </div>
-      <Menu items={menuItems} />
+
+      <Menu items={list} />
     </div>
   );
 }
-
-export default App;
-
 
 export default App;

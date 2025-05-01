@@ -1,7 +1,9 @@
 <p>Now I can render any React component on any DOM node I want using ReactDOM.render</p>
 import React, { useState } from "react";
+import Menu from "./Menu";
+import "./styles.css";
 
-const MENU_DATA = [
+const MENU_DATA =  [
   {
     id: 1,
     title: "buttermilk pancakes",
@@ -76,48 +78,41 @@ const MENU_DATA = [
   },
 ];
 
-function App() {
-  const [list, setList] = useState(MENU_DATA);
+const allCategories = ["all", ...new Set(MENU_DATA.map(item => item.category))];
 
-  const onFilter = (category) => {
+function App() {
+  const [menuItems, setMenuItems] = useState(MENU_DATA);
+  const [activeCategory, setActiveCategory] = useState("all");
+
+  const handleFilter = (category) => {
+    setActiveCategory(category);
     if (category === "all") {
-      setList(MENU_DATA);
+      setMenuItems(MENU_DATA);
     } else {
-      const matches = MENU_DATA.filter((item) => item.category === category);
-      setList(matches);
+      setMenuItems(MENU_DATA.filter(item => item.category === category));
     }
   };
 
   return (
-    <div id="main">
-      <h1>Our Menu</h1>
-
-      <div>
-        <button onClick={() => onFilter("all")}>All</button>
-        <button onClick={() => onFilter("breakfast")}>Breakfast</button>
-        <button onClick={() => onFilter("lunch")}>Lunch</button>
-        <button onClick={() => onFilter("shakes")}>Shakes</button>
-      </div>
-
-      <div>
-        {list.map((item) => (
-          <div
-            key={item.id}
-            data-test-id={`menu-item-${item.category}`}
-            style={{ border: "1px solid #ddd", margin: "10px", padding: "10px" }}
+    <div className="app">
+      <h1 className="menu-title">Our Menu</h1>
+      <div className="btn-container">
+        {allCategories.map((cat, index) => (
+          <button
+            key={index}
+            className={`filter-btn ${cat === activeCategory ? "active" : ""}`}
+            onClick={() => handleFilter(cat)}
           >
-            <img src={item.img} alt={item.title} style={{ width: "200px" }} />
-            <div>
-              <h4>
-                {item.title} - ${item.price}
-              </h4>
-              <p>{item.desc}</p>
-            </div>
-          </div>
+            {cat}
+          </button>
         ))}
       </div>
+      <Menu items={menuItems} />
     </div>
   );
 }
+
+export default App;
+
 
 export default App;

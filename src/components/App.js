@@ -1,6 +1,5 @@
 <p>Now I can render any React component on any DOM node I want using ReactDOM.render</p>
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const MENU_DATA = [
   {
@@ -25,7 +24,7 @@ const MENU_DATA = [
     category: "shakes",
     price: 6.99,
     img: "./images/item-3.jpeg",
-    desc: ombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.,
+    desc: `kombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.`,
   },
   {
     id: 4,
@@ -49,7 +48,7 @@ const MENU_DATA = [
     category: "shakes",
     price: 18.99,
     img: "./images/item-6.jpeg",
-    desc: Portland chicharrones ethical edison bulb, palo santo craft beer chia heirloom iPhone everyday,
+    desc: `Portland chicharrones ethical edison bulb, palo santo craft beer chia heirloom iPhone everyday.`,
   },
   {
     id: 7,
@@ -73,68 +72,52 @@ const MENU_DATA = [
     category: "shakes",
     price: 16.99,
     img: "./images/item-9.jpeg",
-    desc: skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.,
+    desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
 ];
 
-function App(){
-  const [list, setlist] = useState(MENU_DATA);
+function App() {
+  const [list, setList] = useState(MENU_DATA);
 
   const onFilter = (category) => {
     if (category === "all") {
-      setlist(MENU_DATA);
+      setList(MENU_DATA);
     } else {
       const matches = MENU_DATA.filter((item) => item.category === category);
-
-      setlist(matches);
+      setList(matches);
     }
   };
+
   return (
     <div id="main">
       <h1>Our Menu</h1>
 
       <div>
-        <button id="filter-btn-0" onClick={() => onFilter("all")}>
-          All
-        </button>
-        <button id="filter-btn-1" onClick={() => onFilter("breakfast")}>
-          Breakfast
-        </button>
-        <button id="filter-btn-2" onClick={() => onFilter("lunch")}>
-          Lunch
-        </button>
-        <button id="filter-btn-3" onClick={() => onFilter("shakes")}>
-          Shakes
-        </button>
+        <button onClick={() => onFilter("all")}>All</button>
+        <button onClick={() => onFilter("breakfast")}>Breakfast</button>
+        <button onClick={() => onFilter("lunch")}>Lunch</button>
+        <button onClick={() => onFilter("shakes")}>Shakes</button>
       </div>
 
       <div>
         {list.map((item) => (
           <div
-            data-test-id={
-              item.category === "breakfast"
-                ? "menu-item-breakfast"
-                : item.category === "lunch"
-                ? "menu-item-lunch"
-                : "menu-item-shakes"
-            }
             key={item.id}
+            data-test-id={`menu-item-${item.category}`}
+            style={{ border: "1px solid #ddd", margin: "10px", padding: "10px" }}
           >
+            <img src={item.img} alt={item.title} style={{ width: "200px" }} />
             <div>
-              <img src={item.img} alt={item.title} />
-            </div>
-            <div>
-              <div>
-                <span>{item.title}</span>
-                <span>{item.price}</span>
-              </div>
-              <div>{item.desc}</div>
+              <h4>
+                {item.title} - ${item.price}
+              </h4>
+              <p>{item.desc}</p>
             </div>
           </div>
         ))}
       </div>
     </div>
   );
-};
+}
 
-export default App;
+export default App;

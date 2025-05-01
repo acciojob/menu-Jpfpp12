@@ -2,7 +2,7 @@ import React from "react";
 
 function Menu({ items }) {
   return (
-    <div className="menu-section">
+    <div className="main">
       {items.map(item => (
         <article className="menu-item" key={item.id}>
           <img src={item.img} alt={item.title} className="photo" />

@@ -1,4 +1,3 @@
-<p>Now I can render any React component on any DOM node I want using ReactDOM.render</p>
 import React from "react";
 import { useState } from "react";
 
@@ -25,7 +24,7 @@ const MENU_DATA = [
     category: "shakes",
     price: 6.99,
     img: "./images/item-3.jpeg",
-    desc: ombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.,
+    desc: `ombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.`,
   },
   {
     id: 4,
@@ -49,7 +48,7 @@ const MENU_DATA = [
     category: "shakes",
     price: 18.99,
     img: "./images/item-6.jpeg",
-    desc: Portland chicharrones ethical edison bulb, palo santo craft beer chia heirloom iPhone everyday,
+    desc: `Portland chicharrones ethical edison bulb, palo santo craft beer chia heirloom iPhone everyday`,
   },
   {
     id: 7,
@@ -73,7 +72,7 @@ const MENU_DATA = [
     category: "shakes",
     price: 16.99,
     img: "./images/item-9.jpeg",
-    desc: skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.,
+    desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
 ];
 

@@ -1,9 +1,13 @@
-import React, { useState } from "react";
-import Menu from "./Menu";
-import './styles.css';
+import React, { useState, useEffect } from 'react';
 
 const App = () => {
-  const menuItems = [
+  const [items, setItems] = useState([]);
+  const [activeCategory, setActiveCategory] = useState('Shakes');
+
+  useEffect(() => {
+    // Mock fetching items based on category
+    const fetchItems = () => {
+      const allItems = [
   {
     id: 1,
     title: 'buttermilk pancakes',
@@ -78,41 +82,27 @@ const App = () => {
   },
 ]
 ;
+      setItems(allItems.filter(item => item.category === activeCategory));
+    };
 
-  const [filteredCategory, setFilteredCategory] = useState("All");
-
-  const handleCategoryClick = (category) => {
-    setFilteredCategory(category);
-  };
-
-  const filteredMenu = filteredCategory === "All" 
-    ? menuItems 
-    : menuItems.filter(item => item.category.toLowerCase() === filteredCategory.toLowerCase());
+    fetchItems();
+  }, [activeCategory]);
 
   return (
     <div id="main">
       <h1>Menu</h1>
-      <div className="filter-buttons">
-        <button
-          id="filter-btn-1"
-          onClick={() => handleCategoryClick("breakfast")}
-        >
-          Breakfast
-        </button>
-        <button
-          id="filter-btn-2"
-          onClick={() => handleCategoryClick("lunch")}
-        >
-          Lunch
-        </button>
-        <button
-          id="filter-btn-3"
-          onClick={() => handleCategoryClick("shakes")}
-        >
-          Shakes
-        </button>
+      <div>
+        <button id="filter-btn-1" onClick={() => setActiveCategory('Breakfast')}>Breakfast</button>
+        <button id="filter-btn-2" onClick={() => setActiveCategory('Lunch')}>Lunch</button>
+        <button id="filter-btn-3" onClick={() => setActiveCategory('Shakes')}>Shakes</button>
       </div>
-      <Menu items={filteredMenu} />
+      <div id="items-list">
+        {items.map(item => (
+          <div key={item.id} className="item">
+            <h2>{item.name}</h2>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

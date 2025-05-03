@@ -95,19 +95,19 @@ const App = () => {
       <div className="filter-buttons">
         <button
           id="filter-btn-1"
-          onClick={() => handleCategoryClick("Breakfast")}
+          onClick={() => handleCategoryClick("breakfast")}
         >
           Breakfast
         </button>
         <button
           id="filter-btn-2"
-          onClick={() => handleCategoryClick("Lunch")}
+          onClick={() => handleCategoryClick("lunch")}
         >
           Lunch
         </button>
         <button
           id="filter-btn-3"
-          onClick={() => handleCategoryClick("Shakes")}
+          onClick={() => handleCategoryClick("shakes")}
         >
           Shakes
         </button>

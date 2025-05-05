@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import "./styles/App.css";
 
 const MENU_DATA = [
   {

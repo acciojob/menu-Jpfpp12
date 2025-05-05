@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "./styles/App.css";
+import "./App.css";
 
 const MENU_DATA = [
   {
@@ -85,10 +85,10 @@ const Menu = () => {
       setlist(MENU_DATA);
     } else {
       const matches = MENU_DATA.filter((i) => i.category === category);
-
       setlist(matches);
     }
   };
+
   return (
     <div id="main">
       <h1>Our Menu</h1>
@@ -111,13 +111,7 @@ const Menu = () => {
       <div>
         {list.map((i) => (
           <div
-            data-test-id={
-              i.category === "breakfast"
-                ? "menu-item-breakfast"
-                : i.category === "lunch"
-                ? "menu-item-lunch"
-                : "menu-item-shakes"
-            }
+            data-test-id={`menu-item-${i.category}`}
             key={i.id}
           >
             <div>
